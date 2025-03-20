@@ -28,12 +28,12 @@ const menus:MenuInterface[] = [
         label: "Configuración",
         submenus: [
             {
-                label: "Usuarios",
-                href: Routes.users.list
+                label: "Roles",
+                href: Routes.user_profiles.list
             },
             {
-                label: "Otros",
-                href: ''
+                label: "Usuarios",
+                href: Routes.users.list
             }
         ]
     }

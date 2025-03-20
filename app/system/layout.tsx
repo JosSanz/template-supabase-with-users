@@ -8,9 +8,11 @@ export default async function SystemLayout({
     return (
         <div className="grid grid-cols-[auto_1fr] h-screen">
             <Sidebar />
-            <main className="overflow-y-auto overflow-x-hidden px-6 py-4">
-                {children}
-            </main>
+            <div className="overflow-y-auto overflow-x-hidden">
+                <main className="container mx-auto px-6 py-4 space-y-4">
+                    {children}
+                </main>
+            </div>
         </div>
     );
 }

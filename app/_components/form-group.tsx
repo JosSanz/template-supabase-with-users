@@ -9,12 +9,11 @@ interface FormGroupProps extends FormControlProps {
 const FormGroup:FC<FormGroupProps> = (props) => {
     const {
         label,
-        className,
         errors
     } = props;
 
     return (
-        <div className={`space-y-2 ${className ?? ""}`}>
+        <div className='space-y-2'>
             <label className="block text-sm font-medium">{label}</label>
             <FormControl {...props}/>
             <div aria-live="polite" aria-atomic="true" className="space-y-1">

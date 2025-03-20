@@ -1,3 +1,193 @@
+export const ArrowBottomIcon = (
+    props: React.PropsWithoutRef<React.SVGProps<SVGSVGElement>>
+) => (
+    <svg
+        {...props}
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+        <g
+            id="SVGRepo_tracerCarrier"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+        ></g>
+        <g id="SVGRepo_iconCarrier">
+            <path
+                d="M7 10L12 15L17 10"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            ></path>
+        </g>
+    </svg>
+);
+
+export const ArrowLeftIcon = (
+    props: React.PropsWithoutRef<React.SVGProps<SVGSVGElement>>
+) => (
+    <svg
+        {...props}
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+        <g
+            id="SVGRepo_tracerCarrier"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+        ></g>
+        <g id="SVGRepo_iconCarrier">
+            <path
+                d="M15 7L10 12L15 17"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            ></path>
+        </g>
+    </svg>
+);
+
+export const ArrowRightIcon = (
+    props: React.PropsWithoutRef<React.SVGProps<SVGSVGElement>>
+) => (
+    <svg
+        {...props}
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+        <g
+            id="SVGRepo_tracerCarrier"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+        ></g>
+        <g id="SVGRepo_iconCarrier">
+            <path
+                d="M10 7L15 12L10 17"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            ></path>
+        </g>
+    </svg>
+);
+
+export const ArrowUpIcon = (
+    props: React.PropsWithoutRef<React.SVGProps<SVGSVGElement>>
+) => (
+    <svg
+        {...props}
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+        <g
+            id="SVGRepo_tracerCarrier"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+        ></g>
+        <g id="SVGRepo_iconCarrier">
+            <path
+                d="M17 15L12 10L7 15"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            ></path>
+        </g>
+    </svg>
+);
+
+export const CheckEmptyIcon = (
+    props: React.PropsWithoutRef<React.SVGProps<SVGSVGElement>>
+) => (
+    <svg
+        {...props}
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+        <g
+            id="SVGRepo_tracerCarrier"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+        ></g>
+        <g id="SVGRepo_iconCarrier">
+            <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M4.22222 2H19.7778C21 2 22 3 22 4.22222V19.7778C22 21 21 22 19.7778 22H4.22222C3 22 2 21 2 19.7778V4.22222C2 3 3 2 4.22222 2ZM4 20H20V4H4V20Z"
+                fill="currentColor"
+            ></path>
+        </g>
+    </svg>
+);
+
+export const CheckFullIcon = (
+    props: React.PropsWithoutRef<React.SVGProps<SVGSVGElement>>
+) => (
+    <svg
+        {...props}
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+        <g
+            id="SVGRepo_tracerCarrier"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+        ></g>
+        <g id="SVGRepo_iconCarrier">
+            <path
+                d="M16.58 7.58L17.99 9L9.99 17L5.99 13.01L7.41 11.6L9.99 14.17L16.58 7.58Z"
+                fill="currentColor"
+            ></path>
+            <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M19.7778 2H4.22222C3 2 2 3 2 4.22222V19.7778C2 21 3 22 4.22222 22H19.7778C21 22 22 21 22 19.7778V4.22222C22 3 21 2 19.7778 2ZM20 20H4V4H20V20Z"
+                fill="currentColor"
+            ></path>
+        </g>
+    </svg>
+);
+
+export const CheckMediumIcon = (
+    props: React.PropsWithoutRef<React.SVGProps<SVGSVGElement>>
+) => (
+    <svg
+        {...props}
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+        <g
+            id="SVGRepo_tracerCarrier"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+        ></g>
+        <g id="SVGRepo_iconCarrier">
+            <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M19.7778 2H4.22222C3 2 2 3 2 4.22222V19.7778C2 21 3 22 4.22222 22H19.7778C21 22 22 21 22 19.7778V4.22222C22 3 21 2 19.7778 2ZM20 20H4V4H20V20ZM6 11H18V13H6V11Z"
+                fill="currentColor"
+            ></path>
+        </g>
+    </svg>
+);
+
 export const HomeIcon = (
     props: React.PropsWithoutRef<React.SVGProps<SVGSVGElement>>
 ) => (
@@ -51,15 +241,40 @@ export const MenuIcon = (
     </svg>
 );
 
+export const PlusIcon = (
+    props: React.PropsWithoutRef<React.SVGProps<SVGSVGElement>>
+) => (
+    <svg
+        {...props}
+        viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+    >
+        <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+        <g
+            id="SVGRepo_tracerCarrier"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+        ></g>
+        <g id="SVGRepo_iconCarrier">
+            <path
+                fill="currentColor"
+                fillRule="evenodd"
+                d="M9 17a1 1 0 102 0v-6h6a1 1 0 100-2h-6V3a1 1 0 10-2 0v6H3a1 1 0 000 2h6v6z"
+            ></path>
+        </g>
+    </svg>
+);
+
 export const SettingsIcon = (
     props: React.PropsWithoutRef<React.SVGProps<SVGSVGElement>>
 ) => (
     <svg
-		{...props}
-		viewBox="0 0 192 192"
-		xmlns="http://www.w3.org/2000/svg"
-		fill="none"
-	>
+        {...props}
+        viewBox="0 0 192 192"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+    >
         <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
         <g
             id="SVGRepo_tracerCarrier"

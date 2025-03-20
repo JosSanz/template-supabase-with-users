@@ -1,5 +1,7 @@
+import PageTitle from "../_components/page-title";
+
 export default async function Page() {
     return (
-        <h1>Welcome!</h1>
+        <PageTitle text="Welcome!" />
     )
 }
