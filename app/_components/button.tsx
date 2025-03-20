@@ -15,8 +15,9 @@ const Button: FC<ButtonProps> = ({ children, onLoading, iconSize, ...props }) =>
         disabled
     } = props;
 
-    const classVariant = variant ? 
-        'bg-primary text-white border-primary hover:bg-primary-hover' 
+    const classVariant = variant ?
+        variant === 'outline-light' ? 'bg-transparent text-white border-white hover:bg-white hover:text-inherit'
+        : 'bg-primary text-white border-primary hover:bg-primary-hover' 
         : '';
 
     return (
