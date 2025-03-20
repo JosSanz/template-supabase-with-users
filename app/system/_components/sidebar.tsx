@@ -7,7 +7,7 @@ import { MenuIcon } from "@/app/_components/icons";
 import Menus from "./menus";
 
 const Sidebar = () => {
-    const [ isOpen, setIsOpen ] = useState(false);
+    const [ isOpen, setIsOpen ] = useState(true);
 
     return (
         <nav className={`bg-primary p-4 space-y-4 transition-all duration-300 ${isOpen ? "w-80" : "w-[70px]"}`}>

@@ -1,6 +1,6 @@
 'use client';
 
-import { HomeIcon, SettingsIcon } from "@/app/_components/icons";
+import { HomeIcon, SettingsIcon, UserIcon } from "@/app/_components/icons";
 import { Routes } from "@/utils/libs/routes";
 import MenuItem from "./menu-item";
 import MenuDropDown from "./menu-dropdown";
@@ -22,6 +22,20 @@ const menus:MenuInterface[] = [
         icon: HomeIcon,
         label: "Inicio",
         href: Routes.home
+    },
+    {
+        icon: UserIcon,
+        label: "Menu ejemplo",
+        submenus: [
+            {
+                label: "Submenú 1",
+                href: ''
+            },
+            {
+                label: "Submenú 2",
+                href: ''
+            }
+        ]
     },
     {
         icon: SettingsIcon,

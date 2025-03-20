@@ -188,6 +188,99 @@ export const CheckMediumIcon = (
     </svg>
 );
 
+export const CloseIcon = (
+    props: React.PropsWithoutRef<React.SVGProps<SVGSVGElement>>
+) => (
+    <svg
+        {...props}
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+        <g
+            id="SVGRepo_tracerCarrier"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+        ></g>
+        <g id="SVGRepo_iconCarrier">
+            <path
+                d="M20.7457 3.32851C20.3552 2.93798 19.722 2.93798 19.3315 3.32851L12.0371 10.6229L4.74275 3.32851C4.35223 2.93798 3.71906 2.93798 3.32854 3.32851C2.93801 3.71903 2.93801 4.3522 3.32854 4.74272L10.6229 12.0371L3.32856 19.3314C2.93803 19.722 2.93803 20.3551 3.32856 20.7457C3.71908 21.1362 4.35225 21.1362 4.74277 20.7457L12.0371 13.4513L19.3315 20.7457C19.722 21.1362 20.3552 21.1362 20.7457 20.7457C21.1362 20.3551 21.1362 19.722 20.7457 19.3315L13.4513 12.0371L20.7457 4.74272C21.1362 4.3522 21.1362 3.71903 20.7457 3.32851Z"
+                fill="currentColor"
+            ></path>
+        </g>
+    </svg>
+);
+
+export const DeleteIcon = (
+    props: React.PropsWithoutRef<React.SVGProps<SVGSVGElement>>
+) => (
+    <svg
+        {...props}
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+        <g
+            id="SVGRepo_tracerCarrier"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+        ></g>
+        <g id="SVGRepo_iconCarrier">
+            <path
+                d="M12.0004 9.5L17.0004 14.5M17.0004 9.5L12.0004 14.5M4.50823 13.9546L7.43966 17.7546C7.79218 18.2115 7.96843 18.44 8.18975 18.6047C8.38579 18.7505 8.6069 18.8592 8.84212 18.9253C9.10766 19 9.39623 19 9.97336 19H17.8004C18.9205 19 19.4806 19 19.9084 18.782C20.2847 18.5903 20.5907 18.2843 20.7824 17.908C21.0004 17.4802 21.0004 16.9201 21.0004 15.8V8.2C21.0004 7.0799 21.0004 6.51984 20.7824 6.09202C20.5907 5.71569 20.2847 5.40973 19.9084 5.21799C19.4806 5 18.9205 5 17.8004 5H9.97336C9.39623 5 9.10766 5 8.84212 5.07467C8.6069 5.14081 8.38579 5.2495 8.18975 5.39534C7.96843 5.55998 7.79218 5.78846 7.43966 6.24543L4.50823 10.0454C3.96863 10.7449 3.69883 11.0947 3.59505 11.4804C3.50347 11.8207 3.50347 12.1793 3.59505 12.5196C3.69883 12.9053 3.96863 13.2551 4.50823 13.9546Z"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            ></path>
+        </g>
+    </svg>
+);
+
+export const EditIcon = (
+    props: React.PropsWithoutRef<React.SVGProps<SVGSVGElement>>
+) => (
+    <svg
+        {...props}
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="currentColor"
+    >
+        <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+        <g
+            id="SVGRepo_tracerCarrier"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+        ></g>
+        <g id="SVGRepo_iconCarrier">
+            <g id="Complete">
+                <g id="edit">
+                    <g>
+                        <path
+                            d="M20,16v4a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V6A2,2,0,0,1,4,4H8"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                        ></path>
+                        <polygon
+                            fill="none"
+                            points="12.5 15.8 22 6.2 17.8 2 8.3 11.5 8 16 12.5 15.8"
+                            stroke="currentColor"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                        ></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </svg>
+);
+
 export const HomeIcon = (
     props: React.PropsWithoutRef<React.SVGProps<SVGSVGElement>>
 ) => (
@@ -316,6 +409,77 @@ export const SpinnerIcon = (
             <g>
                 <path d="M10,1V3a7,7,0,1,1-7,7H1a9,9,0,1,0,9-9Z"></path>
             </g>
+        </g>
+    </svg>
+);
+
+export const UserIcon = (
+    props: React.PropsWithoutRef<React.SVGProps<SVGSVGElement>>
+) => (
+    <svg
+        {...props}
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+        <g
+            id="SVGRepo_tracerCarrier"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+        ></g>
+        <g id="SVGRepo_iconCarrier">
+            <path
+                d="M5 21C5 17.134 8.13401 14 12 14C15.866 14 19 17.134 19 21M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            ></path>
+        </g>
+    </svg>
+);
+
+export const WarningIcon = (
+    props: React.PropsWithoutRef<React.SVGProps<SVGSVGElement>>
+) => (
+    <svg
+        {...props}
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+        <g
+            id="SVGRepo_tracerCarrier"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+        ></g>
+        <g id="SVGRepo_iconCarrier">
+            <path
+                opacity="0.1"
+                d="M10.2501 5.147L3.64909 17.0287C2.9085 18.3618 3.87244 20 5.39741 20H18.5994C20.1243 20 21.0883 18.3618 20.3477 17.0287L13.7467 5.147C12.9847 3.77538 11.0121 3.77538 10.2501 5.147Z"
+                fill="currentColor"
+            ></path>
+            <path
+                d="M12 10V13"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+            ></path>
+            <path
+                d="M12 16V15.9888"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+            ></path>
+            <path
+                d="M10.2515 5.147L3.65056 17.0287C2.90997 18.3618 3.8739 20 5.39887 20H18.6008C20.1258 20 21.0897 18.3618 20.3491 17.0287L13.7482 5.147C12.9861 3.77538 11.0135 3.77538 10.2515 5.147Z"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            ></path>
         </g>
     </svg>
 );

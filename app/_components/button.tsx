@@ -16,14 +16,16 @@ const Button: FC<ButtonProps> = ({ children, onLoading, iconSize, ...props }) =>
     } = props;
 
     const classVariant = variant ?
-        variant === 'outline-light' ? 'bg-transparent text-white border-white hover:bg-white hover:text-inherit'
-        : 'bg-primary text-white border-primary hover:bg-primary-hover' 
+        variant === 'primary' ? 'bg-primary text-white border-primary hover:bg-primary-hover'
+        : variant === 'light' ? 'bg-neutral-50 text-neutral-900 border-neutral-300 hover:bg-neutral-200'
+        : variant === 'outline-light' ? 'bg-transparent text-white border-white hover:bg-white hover:text-inherit'
+        : ''
         : '';
 
     return (
         <button 
             {...props}
-            className={`px-4 py-2 cursor-pointer rounded flex items-center justify-center gap-2 border border-transparent transition-colors disabled:bg-neutral-300 disabled:border-neutral-300 ${classVariant} ${(className ?? "")}`}
+            className={`px-4 py-2 cursor-pointer rounded flex items-center justify-center gap-2 border transition-colors disabled:bg-neutral-300 disabled:border-neutral-300 ${classVariant} ${(className ?? "")}`}
             disabled={disabled || onLoading}
         >
         {onLoading === true ?

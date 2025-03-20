@@ -11,7 +11,11 @@ export default async function Page() {
             <Form
                 action="create"
                 permits={permits}
+                initialData={{
+                    name: '',
+                    permissions: []
+                }}
             />
         </>
-    )
+    );
 }

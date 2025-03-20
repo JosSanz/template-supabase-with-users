@@ -91,7 +91,7 @@ const MenuDropDown = ({
                     <ul className={sidebarOpen ? 'pl-8' : ''}>
                         {submenus.map((item, index) => (
                             <li key={index}>
-                                <Link href={item.href} className="block p-2 rounded hover:bg-primary-hover">
+                                <Link href={item.href} className="block p-2 rounded hover:bg-primary-hover text-nowrap">
                                     {item.label}
                                 </Link>
                             </li>

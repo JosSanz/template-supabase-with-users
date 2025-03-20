@@ -16,13 +16,38 @@ export default function useFormState<T>(initialData: T) {
         setFormData({
             ...formData,
             [e.currentTarget.name]: e.currentTarget.value
-        })
+        });
+    }
+
+    const validateForm = (formId: string) => {
+        const form = document.getElementById(formId);
+
+        if (!form) return true;
+
+        const elements = form.querySelectorAll<HTMLInputElement>('input:not([type="checkbox"])');
+
+        let isValid = true;
+
+        for (const control of elements) {
+            if (control.required) {
+                if (control.value.trim() === "") {
+                    control.classList.add("error");
+                    isValid = false;
+                }
+                else {
+                    control.classList.remove("error");
+                }
+            }
+        }
+
+        return isValid;
     }
 
     return {
         formData,
         setFormData,
         handleChange,
-        handleSelectChange
+        handleSelectChange,
+        validateForm
     };
 }

@@ -2,5 +2,48 @@
 
 @theme {
     --color-primary: var(--color-sky-900);
+    --color-primary-light: var(--color-sky-200);
     --color-primary-hover: var(--color-sky-800);
+}
+
+@layer components {
+    .error {
+        @apply shadow-[0_0_6px_1px_var(--color-red-500)];
+    }
+
+    .table {
+        @apply w-full border-collapse text-sm;
+    }
+
+    .table thead {
+        @apply bg-primary text-white;
+    }
+
+    .table th {
+        @apply p-2 font-medium border-primary;
+    }
+
+    .table td {
+        @apply py-2 px-4 border-neutral-300;
+    }
+
+    .table-borderless tr {
+        @apply border-x border-neutral-300;
+    }
+
+    .table-borderless th, .table-borderless td {
+        @apply border-y;
+    }
+
+    .table:not(.table-borderless) th, .table:not(.table-borderless) td {
+        @apply border;
+    }
+
+    .table-button {
+        @apply size-4 text-neutral-500 hover:text-primary;
+    }
+
+    .skeleton {
+        @apply bg-neutral-300;
+    }
 }
