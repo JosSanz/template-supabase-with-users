@@ -48,26 +48,37 @@ export async function getRole(id: string):Promise<RoleDto | null> {
     return data;
 }
 
-export async function getRoles(query: string, currentPage: number, order_by: string, order: string):Promise<Role[]> {
+export async function getRoles(query: string, currentPage: number, order_by: string, order: string, showAll: boolean):Promise<Role[]> {
     const offset = (currentPage - 1) * ITEMS_PER_PAGE;
 
     const supabase = await createClient();
 
-    const { data } = await supabase.from('roles')
+    let queryFn = supabase.from('roles')
         .select<'*',Role>()
-        .ilike("name", `%${query}%`)
-        .order(order_by, { ascending: order === "ascendant" })
+        .ilike("name", `%${query}%`);
+
+    if (!showAll) {
+        queryFn = queryFn.eq("active", true);
+    }
+
+    const { data } = await queryFn.order(order_by, { ascending: order === "ascendant" })
         .range(offset, offset + ITEMS_PER_PAGE - 1);
 
     return data ?? [];
 }
 
-export async function getRolesPages(query: string): Promise<number> {
+export async function getRolesPages(query: string, showAll: boolean): Promise<number> {
 	const supabase = await createClient();
 
-    const { count } = await supabase.from('roles')
+    let queryFn = supabase.from('roles')
         .select('*', { count: 'exact', head: true })
         .ilike("name", `%${query}%`);
+
+    if (!showAll) {
+        queryFn = queryFn.eq("active", true);
+    }
+
+    const { count } = await queryFn;
 
 	const totalPages = Math.ceil((count ?? 1) / ITEMS_PER_PAGE);
 

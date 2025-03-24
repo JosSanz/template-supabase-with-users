@@ -1,4 +1,4 @@
-export const Routes = {
+const Routes = {
     root: "/",
     signIn: "/sign-in",
     home: "/system",
@@ -14,3 +14,5 @@ export const Routes = {
         update: "/system/users/update"
     },
 };
+
+export default Routes;

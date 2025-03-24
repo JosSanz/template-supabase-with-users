@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { createServerClient } from "@supabase/ssr";
-import { Routes } from "../libs/routes";
+import Routes from "../libs/routes";
 
 export const updateSession = async (request: NextRequest) => {
     // Create an unmodified response

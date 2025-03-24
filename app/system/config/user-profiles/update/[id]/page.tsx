@@ -2,7 +2,7 @@ import PageTitle from "@/app/_components/page-title";
 import { getPermits, getRole } from "@/utils/db/queries";
 import Form, { FormUserProfile } from "../../_components/form";
 import { redirect } from "next/navigation";
-import { Routes } from "@/utils/libs/routes";
+import Routes from "@/utils/libs/routes";
 
 export default async function Page({
     params

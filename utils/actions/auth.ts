@@ -4,7 +4,7 @@ import { z } from "zod";
 import { createClient } from "../supabase/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { Routes } from "../libs/routes";
+import Routes from "../libs/routes";
 
 export type SignInState = {
     errors?: {

@@ -12,7 +12,7 @@ interface SystemContextType {
     triggerToast: ToastParams
 }
 
-const SystemContext = createContext<SystemContextType | undefined>(undefined);
+export const SystemContext = createContext<SystemContextType | undefined>(undefined);
 
 export const useSystemContext = ()=>{
     const context = useContext(SystemContext);

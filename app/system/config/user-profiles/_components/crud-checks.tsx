@@ -26,25 +26,25 @@ const CrudChecks:FC<CrudCheckProps> = (props) => {
         <>
             <div className={`flex items-center justify-center p-2 ${className}`}>
                 <Checkbox 
-                    onClick={() => handleCheckClick('CREATE')}
+                    onChange={() => handleCheckClick('CREATE')}
                     checked={permits?.create ?? false}
                 />
             </div>
             <div className={`flex items-center justify-center p-2 ${className}`}>
                 <Checkbox 
-                    onClick={() => handleCheckClick('READ')}
+                    onChange={() => handleCheckClick('READ')}
                     checked={permits?.read ?? false}
                 />
             </div>
             <div className={`flex items-center justify-center p-2 ${className}`}>
                 <Checkbox 
-                    onClick={() => handleCheckClick('UPDATE')}
+                    onChange={() => handleCheckClick('UPDATE')}
                     checked={permits?.update ?? false}
                 />
             </div>
             <div className={`flex items-center justify-center p-2 ${className}`}>
                 <Checkbox 
-                    onClick={() => handleCheckClick('DELETE')}
+                    onChange={() => handleCheckClick('DELETE')}
                     checked={permits?.delete ?? false}
                 />
             </div>

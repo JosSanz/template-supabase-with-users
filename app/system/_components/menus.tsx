@@ -1,7 +1,7 @@
 'use client';
 
 import { HomeIcon, SettingsIcon, UserIcon } from "@/app/_components/icons";
-import { Routes } from "@/utils/libs/routes";
+import Routes from "@/utils/libs/routes";
 import MenuItem from "./menu-item";
 import MenuDropDown from "./menu-dropdown";
 

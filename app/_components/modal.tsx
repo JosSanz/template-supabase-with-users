@@ -43,14 +43,14 @@ export default function Modal({
             >
             {open &&
                 <motion.div 
-                    className='backdrop'
+                    className='fixed z-[--z-index-modal] top-0 left-0 flex items-center justify-center w-screen h-dvh bg-neutral-900/50'
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                 >
                     <motion.div
                         onClick={(e) => e.stopPropagation()}  // Prevent click from closing modal
-                        className={`modal ${className}`}
+                        className={`w-[95%] bg-white rounded-md shadow-lg ${className}`}
                         variants={dropIn}
                         initial='hidden'
                         animate='visible'
@@ -70,7 +70,7 @@ export default function Modal({
 
 export const ModalBody = ({ children }:{ children: React.ReactNode }) => {
     return (
-        <div className='modal__body'>
+        <div className='py-3 px-4 grid gap-4'>
             {children}
         </div>
     );
@@ -78,7 +78,7 @@ export const ModalBody = ({ children }:{ children: React.ReactNode }) => {
 
 export const ModalFooter = ({ children }:{ children: React.ReactNode }) => {
     return (
-        <div className='modal__footer'>
+        <div className='py-3 px-4 flex items-center justify-end gap-2 border-t border-neutral-300'>
             {children}
         </div>
     );
@@ -94,11 +94,11 @@ export const ModalHeader = ({
     handleClose?: () => void
 }) => {
     return (
-        <div className='modal__header'>
-            <h4>{title}</h4>
+        <div className='py-3 px-4 flex items-center justify-between border-b border-neutral-300'>
+            <h4 className="text-sm font-bold">{title}</h4>
             {closeButton && 
-                <button onClick={handleClose}>
-                    <CloseIcon />
+                <button onClick={handleClose} className="text-neutral-400 hover:text-primary">
+                    <CloseIcon className="size-4"/>
                 </button>
             }
         </div>

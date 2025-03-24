@@ -9,7 +9,7 @@ import { RolePermission } from "@/utils/db/entities";
 import axios from "axios";
 import Alert from "@/app/_components/alert";
 import Button from "@/app/_components/button";
-import { Routes } from "@/utils/libs/routes";
+import Routes from "@/utils/libs/routes";
 import { useSystemContext } from "@/app/system/_components/system-state";
 import { useRouter } from "next/navigation";
 

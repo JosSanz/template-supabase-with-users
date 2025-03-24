@@ -9,6 +9,7 @@ export interface Permit {
 export interface Role {
     id: string
     name: string
+    active: boolean
     created_at: string
     updated_at: string
 }
