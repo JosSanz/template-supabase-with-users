@@ -27,7 +27,7 @@ export default async function Page({
 	const currentPage = Number(params?.page) || 1;
     const showAll = (params?.show_all ?? "") === "true";
 	const order_by = params?.order_by || "name";
-    const order = params?.order || "ascendant"
+    const order = params?.order || "ascendant";
 
     const totalPages = await getRolesPages(query, showAll);
 

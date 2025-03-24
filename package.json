@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@formkit/tempo": "^0.1.2",
     "@supabase/auth-js": "^2.68.0",
     "@supabase/ssr": "^0.6.1",
     "axios": "^1.8.4",
@@ -16,6 +17,7 @@
     "next": "15.2.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-phone-number-input": "^3.4.12",
     "use-debounce": "^10.0.4",
     "zod": "^3.24.2"
   },

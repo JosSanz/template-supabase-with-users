@@ -1,5 +1,7 @@
-import { createClient } from "../supabase/server";
-import { PermissionGroup, RoleDto } from "./dtos";
+'use server';
+
+import { createAdminClient, createClient } from "../supabase/server";
+import { PermissionGroup, RoleDto, UserListDto } from "./dtos";
 import { Permit, Role } from "./entities";
 
 const ITEMS_PER_PAGE = 100;
@@ -48,7 +50,17 @@ export async function getRole(id: string):Promise<RoleDto | null> {
     return data;
 }
 
-export async function getRoles(query: string, currentPage: number, order_by: string, order: string, showAll: boolean):Promise<Role[]> {
+export async function getRoles():Promise<Role[]> {
+    const supabase = await createClient();
+
+    const { data } = await supabase.from('roles')
+        .select<'*',Role>()
+        .order("name", { ascending: true });
+
+    return data ?? [];
+}
+
+export async function getRolesList(query: string, currentPage: number, order_by: string, order: string, showAll: boolean):Promise<Role[]> {
     const offset = (currentPage - 1) * ITEMS_PER_PAGE;
 
     const supabase = await createClient();
@@ -83,4 +95,21 @@ export async function getRolesPages(query: string, showAll: boolean): Promise<nu
 	const totalPages = Math.ceil((count ?? 1) / ITEMS_PER_PAGE);
 
     return totalPages;
+}
+
+export async function getUsers(currentPage: number):Promise<UserListDto> {
+    const supabase = await createAdminClient();
+
+    const { data } = await supabase.auth.admin.listUsers({ page: currentPage, perPage: ITEMS_PER_PAGE });
+
+    const response:UserListDto = {
+        users: data.users,
+        totalPages: 0
+    };
+
+    if ('total' in data) {
+        response.totalPages = Math.ceil(data.total / ITEMS_PER_PAGE);
+    }
+    
+    return response;
 }

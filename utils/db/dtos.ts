@@ -1,3 +1,4 @@
+import { User } from "@supabase/auth-js"
 import { Role, RolePermission } from "./entities"
 
 export interface PermissionGroup {
@@ -21,3 +22,22 @@ export type CreateRoleDto = Pick<Role, "name"> & {
 export type UpdateRoleDto = Pick<Role, "name"> & {
     permits: Omit<RolePermission, "role_id">[]
 };
+
+export interface UserListDto {
+    users: UserInfoDto[]
+    totalPages: number
+}
+
+export type UserInfoDto = Pick<User, "id" | "email" | "email_confirmed_at" | "app_metadata" | "user_metadata" | "last_sign_in_at">;
+
+export interface UserMetadata {
+    name: string
+    lastnames: string
+    phone: string
+}
+
+export interface CreateUserDto  {
+    email: string
+    metadata: UserMetadata
+    roleIds: string[]
+}

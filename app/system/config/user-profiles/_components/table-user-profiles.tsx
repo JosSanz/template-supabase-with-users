@@ -1,7 +1,7 @@
 import { EditIcon } from "@/app/_components/icons";
 import Table, { TableColumnInterface } from "@/app/_components/table";
 import { Role } from "@/utils/db/entities";
-import { getRoles } from "@/utils/db/queries";
+import { getRolesList } from "@/utils/db/queries";
 import Routes from "@/utils/libs/routes";
 import Link from "next/link";
 import ButtonChangeStatus from "./button-change-status";
@@ -44,7 +44,7 @@ export default async function TableUserProfiles({
     order: string
     showAll: boolean
 }) {
-    const roles = await getRoles(query, currentPage, order_by, order, showAll);
+    const roles = await getRolesList(query, currentPage, order_by, order, showAll);
 
     return (
         <UserProfilesState>
