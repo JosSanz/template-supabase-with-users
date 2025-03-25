@@ -1,3 +1,5 @@
+'use client';
+
 import { AnimatePresence, motion } from "motion/react";
 import { FC } from "react";
 
@@ -19,7 +21,7 @@ const Alert:FC<AlertProps> = (props) => {
 
     return (
         <AnimatePresence initial={false}>
-        {isVisible ? (
+        {isVisible ? 
             <motion.div
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: 1, scale: 1, transition: { duration: 0.3 } }}
@@ -29,7 +31,7 @@ const Alert:FC<AlertProps> = (props) => {
             >
                 <p>{text}</p>
             </motion.div>
-        ) : null}
+        : null}
         </AnimatePresence>
     );
 }

@@ -6,6 +6,8 @@ import Button from "@/app/_components/button";
 import FormGroup from "@/app/_components/form-group";
 import { signInAction, SignInState } from "@/utils/actions/auth";
 import useFormState from "@/utils/hooks/use-form";
+import Link from "next/link";
+import Routes from "@/utils/libs/routes";
 
 interface SignInForm {
     email: string
@@ -56,6 +58,9 @@ const Form = () => {
                     errors={state.errors?.password}
                     required
                 />
+                <div className="text-end text-sm">
+                    <Link href={Routes.forgot_password} className="font-medium underline text-primary hover:text-primary-hover">¿Olvidaste tu contraseña?</Link>
+                </div>
                 <Button
                     type="submit"
                     variant="primary"

@@ -21,10 +21,11 @@ interface PhoneInputGroupProps {
     placeholder?: string
     required?: boolean
     onChange: PhoneInputEventHandler
+    errors?: string[]
 }
 
 const PhoneInputGroup:FC<PhoneInputGroupProps> = (props) => {
-    const { id, label, value, name, placeholder, required, onChange } = props;
+    const { id, label, value, name, placeholder, required, onChange, errors } = props;
 
     const handleChange = (_value: string) => {
         onChange({
@@ -47,7 +48,15 @@ const PhoneInputGroup:FC<PhoneInputGroupProps> = (props) => {
                 value={value}
                 onChange={(newValue) => handleChange(newValue ?? "")}
                 required={required}
+                name={name}
             />
+            <div aria-live="polite" aria-atomic="true" className="space-y-1">
+            {errors && errors.map((error: string) => (
+                <p className="text-sm text-red-700" key={error}>
+                    *{error}
+                    </p>
+                ))}
+            </div>
         </div>
     );
 }

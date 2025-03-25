@@ -1,8 +1,10 @@
 import Image from "next/image";
-import Form from "./_components/form";
 
-export default async function SignIn() {
-
+export default async function Layout({
+    children,
+}: Readonly<{
+    children: React.ReactNode;
+}>) {
     return (
         <main className="flex items-center justify-center h-dvh">
             <div className="w-2xl rounded shadow-2xl grid grid-cols-2">
@@ -16,8 +18,7 @@ export default async function SignIn() {
                     />
                 </div>
                 <div className="p-4 space-y-4">
-                    <h1 className="font-semibold">Inicio de sesión</h1>
-                    <Form />
+                    {children}
                 </div>
             </div>
         </main>

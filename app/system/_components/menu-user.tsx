@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
 import { SignOutButton } from "./sign-out-button";
+import Routes from "@/utils/libs/routes";
 
 const variants = {
     initial: {
@@ -71,7 +72,7 @@ const MenuUser = ({
                 >
                     <ul>
                         <li>
-                            <Link href="" className="block p-2 rounded hover:bg-primary-hover text-nowrap">
+                            <Link href={Routes.profile.info} className="block p-2 rounded hover:bg-primary-hover text-nowrap">
                                 Perfil
                             </Link>
                         </li>
