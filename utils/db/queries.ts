@@ -1,8 +1,8 @@
 'use server';
 
 import { createAdminClient, createClient } from "../supabase/server";
-import { PermissionGroup, RoleDto, UserListDto } from "./dtos";
-import { Permit, Role } from "./entities";
+import { PermissionGroup, RoleDto, UserInfoDto, UserListDto } from "./dtos";
+import { Permit, Role, UserRole } from "./entities";
 
 const ITEMS_PER_PAGE = 100;
 
@@ -97,6 +97,14 @@ export async function getRolesPages(query: string, showAll: boolean): Promise<nu
     return totalPages;
 }
 
+export async function getUser(id: string):Promise<UserInfoDto | null> {
+    const supabase = await createAdminClient();
+
+    const { data } = await supabase.auth.admin.getUserById(id);
+
+    return data.user;
+}
+
 export async function getUsers(currentPage: number):Promise<UserListDto> {
     const supabase = await createAdminClient();
 
@@ -112,4 +120,12 @@ export async function getUsers(currentPage: number):Promise<UserListDto> {
     }
     
     return response;
+}
+
+export async function getUserRoles(user_id: string):Promise<UserRole[]> {
+    const supabase = await createClient();
+
+    const { data } = await supabase.from('user_roles').select<'*', UserRole>().eq('user_id', user_id);
+
+    return data ?? [];
 }

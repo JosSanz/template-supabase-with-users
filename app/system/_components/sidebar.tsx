@@ -6,6 +6,7 @@ import Button from "@/app/_components/button";
 import { MenuIcon, UserIcon } from "@/app/_components/icons";
 import Menus from "./menus";
 import { User } from "@supabase/auth-js";
+import MenuUser from "./menu-user";
 
 const Sidebar = ({
     user
@@ -15,7 +16,7 @@ const Sidebar = ({
     const [ isOpen, setIsOpen ] = useState(true);
 
     return (
-        <nav className={`grid grid-rows-[auto_1fr_auto] bg-primary p-4 space-y-4 transition-all duration-300 ${isOpen ? "w-60" : "w-[70px]"}`}>
+        <nav className={`grid grid-cols-1 grid-rows-[auto_1fr_auto] bg-primary p-4 space-y-4 transition-all duration-300 ${isOpen ? "w-60" : "w-[70px]"}`}>
             <div className="flex justify-between gap-4 pb-4 border-b border-white">
                 {isOpen &&
                     <Image
@@ -32,17 +33,10 @@ const Sidebar = ({
                 </Button>
             </div>
             <Menus isOpen={isOpen}/>
-            <div className="text-white">
-            {isOpen &&
-                <div className="flex gap-2 items-center">
-                    <UserIcon className="size-8"/>
-                    <div>
-                        <p className="text-sm line-clamp-1">{user.user_metadata.name ?? ""}</p>
-                        <p className="text-xs line-clamp-1">{user.email}</p>
-                    </div>
-                </div>
-            }
-            </div>
+            <MenuUser 
+                user={user}
+                sidebarOpen={isOpen}
+            />
         </nav>
     );
 }

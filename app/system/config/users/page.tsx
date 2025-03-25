@@ -1,10 +1,10 @@
 import PageTitle from "@/app/_components/page-title";
-import Search from "../../_components/search";
-import ShowAll from "../../_components/show-all";
 import Reload from "../../_components/reload";
 import ButtonNew from "@/app/_components/button-new";
 import Routes from "@/utils/libs/routes";
 import TableUsers from "./_components/table-users";
+import TableSkeleton from "@/app/_components/table-skeleton";
+import { Suspense } from "react";
 
 export default async function Page({
 	searchParams,
@@ -24,7 +24,12 @@ export default async function Page({
                 <Reload />
                 <ButtonNew linkTo={Routes.users.create}/>
             </div>
-            <TableUsers currentPage={currentPage} />
+            <Suspense
+                key={"page_" + currentPage}
+				fallback={<TableSkeleton columns={['Nombre']}/>}
+            >
+                <TableUsers currentPage={currentPage} />
+            </Suspense>
         </>
     )
 }

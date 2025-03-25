@@ -1,8 +1,13 @@
+import { EditIcon } from "@/app/_components/icons";
 import Paginator from "@/app/_components/paginator";
 import Table, { TableColumnInterface } from "@/app/_components/table";
 import { UserInfoDto } from "@/utils/db/dtos";
 import { getUsers } from "@/utils/db/queries";
 import { formatDateTime, formatPhone } from "@/utils/libs/functions";
+import Routes from "@/utils/libs/routes";
+import Link from "next/link";
+import ButtonChangeStatus from "./button-change-status";
+import UsersState from "./users-state";
 
 const columns: TableColumnInterface<UserInfoDto>[] = [
     {
@@ -37,6 +42,21 @@ const columns: TableColumnInterface<UserInfoDto>[] = [
         cellClass: "text-center",
 		render: (row) => (row.app_metadata.active ?? false) === true ? "SI" : "NO"
 	},
+    {
+        key: "actions",
+        label: "",
+        columnClass: "w-1",
+        render: (row) =>
+            <div className="flex gap-2">
+                <Link
+                    href={`${Routes.users.update}/${row.id}`}
+                    className="table-button"
+                >
+                    <EditIcon />
+                </Link>
+                <ButtonChangeStatus data={row}/>
+            </div>
+    }
 ]
 
 export default async function TableUsers({
@@ -47,7 +67,7 @@ export default async function TableUsers({
     const { users, totalPages } = await getUsers(currentPage);
 
     return (
-        <>
+        <UsersState>
             <Table
                 columns={columns}
                 data={users}
@@ -56,6 +76,6 @@ export default async function TableUsers({
 				currentPage={currentPage}
 				totalPages={totalPages}
 			/>
-        </>
+        </UsersState>
     )
 }

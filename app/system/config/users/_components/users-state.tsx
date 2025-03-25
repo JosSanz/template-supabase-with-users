@@ -7,23 +7,23 @@ import axios from "axios";
 import { usePathname, useRouter } from "next/navigation";
 import { createContext, ReactNode, useContext, useRef } from "react";
 
-interface UserProfilesContextType {
+interface UsersContextType {
     onOpenModalChangeStatus: ModalChangeStatusOpen
 }
 
-const UserProfilesContext = createContext<UserProfilesContextType | undefined>(undefined);
+const UsersContext = createContext<UsersContextType | undefined>(undefined);
 
-export const useUserProfilesContext = ()=>{
-    const context = useContext(UserProfilesContext);
+export const useUsersContext = ()=>{
+    const context = useContext(UsersContext);
 
     if(context === undefined){
-        throw new Error('useUserProfilesContext must be used within a SystemProvider');
+        throw new Error('useUsersContext must be used within a SystemProvider');
     }
 
     return context;
 }
 
-const UserProfilesState = ({ children }:{ children: ReactNode }) => {
+const UsersState = ({ children }:{ children: ReactNode }) => {
     const { triggerToast } = useSystemContext();
 
     const pathName = usePathname();
@@ -36,7 +36,7 @@ const UserProfilesState = ({ children }:{ children: ReactNode }) => {
     }
 
     const handleConfirm = async (id: string):Promise<boolean> => {
-        return await axios.patch(`${Routes.user_profiles.api}/${id}`)
+        return await axios.patch(`${Routes.users.api}/${id}`)
             .then(() => {
                 replace(pathName);
                 return true;
@@ -47,7 +47,7 @@ const UserProfilesState = ({ children }:{ children: ReactNode }) => {
     }
 
     return (
-        <UserProfilesContext.Provider
+        <UsersContext.Provider
             value={{
                 onOpenModalChangeStatus
             }}
@@ -57,8 +57,8 @@ const UserProfilesState = ({ children }:{ children: ReactNode }) => {
                 ref={modalChangeStatusRef}
                 onConfirm={handleConfirm}
             ></ModalChangeStatus>
-        </UserProfilesContext.Provider>
+        </UsersContext.Provider>
     );
 }
  
-export default UserProfilesState;
+export default UsersState;

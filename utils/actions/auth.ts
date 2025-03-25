@@ -44,7 +44,7 @@ export const signInAction = async (prevState: SignInState, formData: FormData):P
   
     const supabase = await createClient();
 
-    const { error } = await supabase.auth.signInWithPassword({
+    const { data,  error } = await supabase.auth.signInWithPassword({
         email,
         password,
     });
@@ -53,6 +53,21 @@ export const signInAction = async (prevState: SignInState, formData: FormData):P
         return { message: error.message }
     }
 
+    if (!(data.user.app_metadata.active ?? false)) {
+        await supabase.auth.signOut();
+
+        return { message: "Acceso denegado al sistema. Error al iniciar sesión." }
+    }
+
     revalidatePath(Routes.home);
     redirect(Routes.home);
+};
+
+export const signOutAction = async () => {
+    const supabase = await createClient();
+
+    await supabase.auth.signOut();
+    
+    revalidatePath(Routes.root);
+    return redirect(Routes.root);
 };

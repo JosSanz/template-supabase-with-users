@@ -41,3 +41,9 @@ export interface CreateUserDto  {
     metadata: UserMetadata
     roleIds: string[]
 }
+
+export interface UpdateUserDto  {
+    email: string
+    metadata: UserMetadata
+    roleIds: string[]
+}

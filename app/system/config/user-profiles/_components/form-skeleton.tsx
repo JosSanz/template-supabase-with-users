@@ -4,7 +4,9 @@ import { Fragment } from "react";
 export default function FormUserProfileSkeleton() {
     return (
         <>
-            <FormGroupSkeleton />
+            <div className="w-80">
+                <FormGroupSkeleton />
+            </div>
             <div className="animate-pulse grid grid-cols-[1fr_100px_100px_100px_100px]">
                 <div></div>
                 <div className="p-2">

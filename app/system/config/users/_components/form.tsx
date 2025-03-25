@@ -11,7 +11,7 @@ import Routes from "@/utils/libs/routes";
 import { useRouter } from "next/navigation";
 import { FC, FormEventHandler, useState } from "react";
 import RolesContainer from "./roles-container";
-import { CreateUserDto } from "@/utils/db/dtos";
+import { CreateUserDto, UpdateUserDto } from "@/utils/db/dtos";
 import axios from "axios";
 
 export interface FormUsers {
@@ -98,9 +98,9 @@ const Form:FC<FormProps> = (props) => {
         if (action === 'create') {
             sendPost();
         }
-        // else {
-        //     sendPut();
-        // }
+        else {
+            sendPut();
+        }
     }
 
     const sendPost = () => {
@@ -119,6 +119,30 @@ const Form:FC<FormProps> = (props) => {
 			data
 		).then(function() {
 			triggerToast("Registro guardado con éxito", "success");
+            onBack();
+		}).catch(error => {
+			triggerToast(error.response.data?.error ?? "Error al guardar, inténtelo de nuevo", "error");
+		}).finally(function(){
+			setSaving(false);
+		});
+    }
+
+    const sendPut = () => {
+        const data:UpdateUserDto = {
+            email: email,
+            metadata: {
+                name: name,
+                lastnames: lastnames,
+                phone: phone
+            },
+            roleIds: roleIds
+        };
+
+        axios.put(
+			`${Routes.users.api}/${id}`, 
+			data
+		).then(function() {
+			triggerToast("Registro actualizado con éxito", "success");
             onBack();
 		}).catch(error => {
 			triggerToast(error.response.data?.error ?? "Error al guardar, inténtelo de nuevo", "error");
