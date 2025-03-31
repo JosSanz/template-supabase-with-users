@@ -1,6 +1,6 @@
 'use client';
 
-import Checkbox, { CheckboxEventHandler } from "@/app/_components/checkbox";
+import Checkbox from "@/app/_components/checkbox";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { ChangeEventHandler } from "react";
 

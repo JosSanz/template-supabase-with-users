@@ -1,8 +1,9 @@
 import Tooltip from "@/app/_components/tooltip";
-import { MenuInterface } from "./menus";
+import { MenuInterface } from "./sidebar";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { useSidebarContext } from "./sidebar-state";
 
 const sidebarOpenVariants = {
     initial: {
@@ -36,12 +37,13 @@ const sidebarCloseVariants = {
 
 const MenuDropDown = ({
     item,
-    sidebarOpen
 }:{
     item: MenuInterface
-    sidebarOpen: boolean
 }) => {
-    const { icon: MenuIcon, label, submenus } = item;
+    
+    const { isOpen: sidebarOpen } = useSidebarContext();
+
+    const { icon, label, submenus } = item;
 
     const [ isOpen, setIsOpen ] = useState(false);
 
@@ -75,7 +77,7 @@ const MenuDropDown = ({
                 className="group w-full relative cursor-pointer flex items-center gap-2 text-white p-2 rounded transition hover:bg-primary-hover"
                 onClick={() => setIsOpen(!isOpen)}
             >
-                <MenuIcon className="size-5"/>
+                {icon}
                 {sidebarOpen && <span>{label}</span>}
                 {!sidebarOpen && <Tooltip text={label} position="right"/>}
             </button>

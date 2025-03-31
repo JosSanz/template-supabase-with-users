@@ -1,3 +1,5 @@
+'use client';
+
 import { UserIcon } from "@/app/_components/icons";
 import { User } from "@supabase/auth-js";
 import { AnimatePresence, motion } from "motion/react";
@@ -5,6 +7,7 @@ import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
 import { SignOutButton } from "./sign-out-button";
 import Routes from "@/utils/libs/routes";
+import { useSidebarContext } from "./sidebar-state";
 
 const variants = {
     initial: {
@@ -22,12 +25,12 @@ const variants = {
 }
 
 const MenuUser = ({
-    sidebarOpen,
     user
 }:{
-    sidebarOpen: boolean
     user: User
 }) => {
+    const { isOpen: sidebarOpen } = useSidebarContext();
+    
     const [ isOpen, setIsOpen ] = useState(false);
 
     const menuRef = useRef<HTMLButtonElement>(null);
@@ -71,13 +74,19 @@ const MenuUser = ({
                     className='overflow-y-hidden absolute left-[calc(100%+16px)] bottom-0 shadow rounded-r-sm z-10 bg-primary text-white'
                 >
                     <ul>
+                        {!sidebarOpen && 
+                            <li className="text-start p-2 border-b border-primary-hover">
+                                <p className="text-sm line-clamp-1">{user.user_metadata.name ?? ""} {user.user_metadata.lastnames ?? ""}</p>
+                                <p className="text-xs line-clamp-1">{user.email}</p>
+                            </li>
+                        }
                         <li>
                             <Link href={Routes.profile.info} className="block p-2 rounded hover:bg-primary-hover text-nowrap">
                                 Perfil
                             </Link>
                         </li>
                         <li>
-                            <SignOutButton className="block p-2 rounded hover:bg-primary-hover text-nowrap cursor-pointer" />
+                            <SignOutButton className="w-full text-start block p-2 rounded hover:bg-primary-hover text-nowrap cursor-pointer" />
                         </li>
                     </ul>
                 </motion.div>

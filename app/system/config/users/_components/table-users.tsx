@@ -2,7 +2,7 @@ import { EditIcon } from "@/app/_components/icons";
 import Paginator from "@/app/_components/paginator";
 import Table, { TableColumnInterface } from "@/app/_components/table";
 import { UserInfoDto } from "@/utils/db/dtos";
-import { getUsers } from "@/utils/db/queries";
+import { getUserActionPermission, getUsers } from "@/utils/db/queries";
 import { formatDateTime, formatPhone } from "@/utils/libs/functions";
 import Routes from "@/utils/libs/routes";
 import Link from "next/link";
@@ -41,22 +41,7 @@ const columns: TableColumnInterface<UserInfoDto>[] = [
 		label: "Activo",
         cellClass: "text-center",
 		render: (row) => (row.app_metadata.active ?? false) === true ? "SI" : "NO"
-	},
-    {
-        key: "actions",
-        label: "",
-        columnClass: "w-1",
-        render: (row) =>
-            <div className="flex gap-2">
-                <Link
-                    href={`${Routes.users.update}/${row.id}`}
-                    className="table-button"
-                >
-                    <EditIcon />
-                </Link>
-                <ButtonChangeStatus data={row}/>
-            </div>
-    }
+	}
 ]
 
 export default async function TableUsers({
@@ -66,10 +51,35 @@ export default async function TableUsers({
 }) {
     const { users, totalPages } = await getUsers(currentPage);
 
+    const canUpdate = await getUserActionPermission('users', 'update');
+    const canDelete = await getUserActionPermission('users', 'delete');
+
+    const columnsToShow = [...columns];
+
+    if (canUpdate || canDelete) {
+        columnsToShow.push({
+            key: "actions",
+            label: "",
+            columnClass: "w-1",
+            render: (row) =>
+                <div className="flex gap-2">
+                    {canUpdate && 
+                        <Link
+                            href={`${Routes.users.update}/${row.id}`}
+                            className="table-button"
+                        >
+                            <EditIcon />
+                        </Link>
+                    }
+                    {canDelete && <ButtonChangeStatus data={row}/>}
+                </div>
+        });
+    }
+
     return (
         <UsersState>
             <Table
-                columns={columns}
+                columns={columnsToShow}
                 data={users}
             />
             <Paginator 

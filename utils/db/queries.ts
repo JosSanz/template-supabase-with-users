@@ -2,7 +2,7 @@
 
 import { createAdminClient, createClient } from "../supabase/server";
 import { PermissionGroup, RoleDto, UserInfoDto, UserListDto } from "./dtos";
-import { Permit, Role, UserRole } from "./entities";
+import { Permit, Role, UserRole, ViewUserPermissions } from "./entities";
 
 const ITEMS_PER_PAGE = 100;
 
@@ -103,6 +103,37 @@ export async function getUser(id: string):Promise<UserInfoDto | null> {
     const { data } = await supabase.auth.admin.getUserById(id);
 
     return data.user;
+}
+
+export async function getUserHasPermits(user_id: string):Promise<boolean> {
+    const userPermits: ViewUserPermissions[] = await getUserPermits(user_id);
+
+    const withPermits = userPermits.filter(u => u.create || u.read || u.update || u.delete);
+
+    return withPermits.length > 0;
+}
+
+export async function getUserActionPermission(key: string, action: 'create' | 'read' | 'update' | 'delete'):Promise<boolean> {
+    const supabase = await createClient();
+
+    const { data: { user } } = await supabase.auth.getUser();
+
+    if (!user) {
+        return false;
+    }
+
+    const { count } = await supabase.from('user_permissions').select('*', { count: 'exact', head: true })
+        .eq("user_id", user.id).eq("key", key).eq(action, true);
+    
+    return (count ?? 0) > 0;
+}
+
+export async function getUserPermits(user_id: string):Promise<ViewUserPermissions[]> {
+    const supabase = await createClient();
+
+    const { data } = await supabase.from('user_permissions').select<'*', ViewUserPermissions>().eq("user_id", user_id);
+
+    return data ?? [];
 }
 
 export async function getUsers(currentPage: number):Promise<UserListDto> {

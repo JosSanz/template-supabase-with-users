@@ -37,7 +37,7 @@ const Form = () => {
                 confirm_password: ''
             });
         }
-    }, [ state ]);
+    }, [ state ]); //eslint-disable-line
 
     return (
         <>

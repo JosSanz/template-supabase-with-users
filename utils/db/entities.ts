@@ -27,3 +27,5 @@ export interface UserRole {
     user_id: string
     role_id: string
 }
+
+export type ViewUserPermissions = Pick<Permit, "menu" | "key"> & Pick<RolePermission, "create" | "read" | "update" | "delete">;

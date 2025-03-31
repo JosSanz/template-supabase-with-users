@@ -6,6 +6,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import Routes from "../libs/routes";
 import { headers } from "next/headers";
+import { getUserHasPermits } from "../db/queries";
 
 export type RequestResetPasswordState = {
     errors?: {
@@ -170,7 +171,7 @@ export const signInAction = async (prevState: SignInState, formData: FormData):P
         return { message: error.message }
     }
 
-    if (!(data.user.app_metadata.active ?? false)) {
+    if (!(data.user.app_metadata.active ?? false) || !(await getUserHasPermits(data.user.id))) {
         await supabase.auth.signOut();
 
         return { message: "Acceso denegado al sistema. Error al iniciar sesión." }

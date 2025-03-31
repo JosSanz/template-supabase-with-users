@@ -4,14 +4,19 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```postgres
+CREATE VIEW public.user_permissions WITH (security_invoker = on) AS
+SELECT p.menu,
+    p.key,
+    rp."create",
+    rp.read,
+    rp.update,
+    rp.delete,
+    ur.user_id
+FROM user_roles ur
+    JOIN roles r ON ur.role_id = r.id
+    JOIN role_permissions rp ON r.id = rp.role_id
+    JOIN permits p ON rp.permission_id = p.id;
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.

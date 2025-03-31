@@ -1,16 +1,16 @@
 import Tooltip from "@/app/_components/tooltip";
-import { MenuInterface } from "./menus";
+import { MenuInterface } from "./sidebar";
 import Link from "next/link";
-import { AnimatePresence, motion } from "motion/react";
+import { useSidebarContext } from "./sidebar-state";
 
 const MenuItem = ({
     item,
-    sidebarOpen
 }:{
     item: MenuInterface
-    sidebarOpen: boolean
 }) => {
-    const { icon: MenuIcon, label, href} = item;
+    const { isOpen: sidebarOpen } = useSidebarContext();
+
+    const { icon, label, href} = item;
 
     return (
         <li>
@@ -18,7 +18,7 @@ const MenuItem = ({
                 href={href ?? ''}
                 className="group relative cursor-pointer min-h-[40px] flex items-center gap-2 text-white p-2 rounded transition hover:bg-primary-hover"
             >
-                <MenuIcon className="size-5"/>
+                {icon}
                 {sidebarOpen && <span>{label}</span>}
                 {!sidebarOpen && <Tooltip text={label} position="right"/>}
             </Link>

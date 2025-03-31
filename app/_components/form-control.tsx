@@ -1,8 +1,6 @@
 import React, { FC, InputHTMLAttributes } from 'react';
 
-export interface FormControlProps extends InputHTMLAttributes<HTMLInputElement> {
-
-}
+export type FormControlProps = InputHTMLAttributes<HTMLInputElement>;
 
 const FormControl: FC<FormControlProps> = (props) => {
     const {

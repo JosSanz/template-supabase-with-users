@@ -1,6 +1,6 @@
 import ButtonNew from "@/app/_components/button-new";
 import PageTitle from "@/app/_components/page-title";
-import { getRolesPages } from "@/utils/db/queries";
+import { getRolesPages, getUserActionPermission } from "@/utils/db/queries";
 import Routes from "@/utils/libs/routes";
 import TableUserProfiles from "./_components/table-user-profiles";
 import Paginator from "@/app/_components/paginator";
@@ -9,6 +9,7 @@ import TableSkeleton from "@/app/_components/table-skeleton";
 import Search from "../../_components/search";
 import Reload from "../../_components/reload";
 import ShowAll from "../../_components/show-all";
+import { redirect } from "next/navigation";
 
 export default async function Page({
 	searchParams,
@@ -21,6 +22,14 @@ export default async function Page({
         order: string
 	}>;
 }) {
+    const canRead = await getUserActionPermission('roles', 'read');
+
+    if (!canRead) {
+        redirect(Routes.home);
+    }
+
+    const canCreate = await getUserActionPermission('roles', 'create');
+
     const params = await searchParams;
 
 	const query: string = params?.query || "";
@@ -44,12 +53,12 @@ export default async function Page({
                 </div>
                 <div className="flex gap-2">
                     <Reload />
-                    <ButtonNew linkTo={Routes.user_profiles.create}/>
+                    {canCreate && <ButtonNew linkTo={Routes.user_profiles.create}/>}
                 </div>
             </div>
             <Suspense
                 key={query + currentPage + order_by + order + showAll}
-				fallback={<TableSkeleton columns={['Nombre']}/>}
+				fallback={<TableSkeleton columns={['Nombre', 'Activo']}/>}
             >
                 <TableUserProfiles
                     query={query}

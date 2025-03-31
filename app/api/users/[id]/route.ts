@@ -1,5 +1,5 @@
 import { UpdateUserDto } from "@/utils/db/dtos";
-import { Role, RolePermission, UserRole } from "@/utils/db/entities";
+import {  UserRole } from "@/utils/db/entities";
 import { createAdminClient } from "@/utils/supabase/server";
 import { NextRequest, NextResponse } from "next/server";
 
