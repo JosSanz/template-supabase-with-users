@@ -80,5 +80,5 @@ FROM user_roles ur
     JOIN permits p ON rp.permission_id = p.id;
 ```
 
-[!NOTE]
-To enable the connection to the database go to `Authentication` -> `Policies` and create the rules for each CRUD action on the tables.
+> [!NOTE]
+> To enable the connection to the database go to `Authentication` -> `Policies` and create the rules for each CRUD action on the tables.
