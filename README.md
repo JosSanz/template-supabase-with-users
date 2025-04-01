@@ -1,11 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NextJs + Supabase template
+This project is a template for a system that requires users management with roles and permits using NextJs as framework and Supabase as database and auth provider.
 
 ## Getting Started
+### Clone the repository
+On Github open the template repository and click the `Use this template` button to create a new repository. Then clone to your local machine.
 
-First, run the development server:
+### Supabase
+Create and account on Supabase if you don't have one.
+
+Create a new project and go to `Project Settings` -> `Data API` to get the connection keys.
+
+Duplicate the file `.env.example` and rename as `.env.local` and paste the values for the keys from `Supabase`.
+
+### Database
+This project has a few tables by default, you can change the columns if you need.
 
 ```postgres
-CREATE VIEW public.user_permissions WITH (security_invoker = on) AS
+CREATE TABLE roles WITH (security_invoker = on) (
+    id uuid not null default gen_random_uuid (),
+    name character varying not null,
+    active boolean not null default true,
+    created_at timestamp with time zone not null default (now() AT TIME ZONE 'utc'::text),
+    updated_at timestamp with time zone not null default (now() AT TIME ZONE 'utc'::text),
+    constraint roles_pkey primary key (id),
+    constraint roles_name_key unique (name)
+);
+```
+
+```postgres
+CREATE TABLE permits WITH (security_invoker = on) (
+    id uuid not null default gen_random_uuid (),
+    name character varying not null,
+    key character varying not null,
+    menu character varying not null,
+    crud boolean not null,
+    constraint permits_pkey primary key (id),
+    constraint permits_key_key unique (key)
+);
+```
+
+```postgres
+CREATE TABLE role_permissions WITH (security_invoker = on) (
+    role_id uuid not null,
+    permission_id uuid not null,
+    "create" boolean not null,
+    "read" boolean not null,
+    "update" boolean not null,
+    "delete" boolean not null,
+    constraint role_permissions_pkey primary key (role_id, permission_id),
+    constraint role_permissions_permission_id_fkey foreign KEY (permission_id) references permits (id) on update CASCADE on delete CASCADE,
+    constraint role_permissions_role_id_fkey foreign KEY (role_id) references roles (id) on update CASCADE on delete CASCADE
+);
+```
+
+```postgres
+CREATE TABLE user_roles WITH (security_invoker = on) (
+    user_id uuid not null,
+    role_id uuid not null,
+    constraint user_roles_pkey primary key (user_id, role_id),
+    constraint user_roles_role_id_fkey foreign KEY (role_id) references roles (id) on update CASCADE on delete CASCADE,
+    constraint user_roles_user_id_fkey foreign KEY (user_id) references auth.users (id) on update CASCADE on delete CASCADE
+);
+```
+
+This view is required for check the user permits mergin all the roles asigned.
+
+```postgres
+CREATE VIEW user_permissions WITH (security_invoker = on) AS
 SELECT p.menu,
     p.key,
     rp."create",
@@ -19,23 +80,5 @@ FROM user_roles ur
     JOIN permits p ON rp.permission_id = p.id;
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+[!NOTE]
+To enable the connection to the database go to `Authentication` -> `Policies` and create the rules for each CRUD action on the tables.
