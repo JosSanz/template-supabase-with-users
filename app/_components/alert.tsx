@@ -1,23 +1,28 @@
 'use client';
 
-import { AnimatePresence, motion } from "motion/react";
 import { FC } from "react";
+import { AnimatePresence, motion } from "motion/react";
+
+const AlertVariants = {
+    success: 'bg-green-100 text-green-800',
+    danger: 'bg-red-200 text-red-700',
+    warning: 'bg-yellow-100 text-yellow-800',
+    info: 'bg-blue-100 text-blue-800'
+}
+
+type AlertVariantKeys = keyof typeof AlertVariants;
 
 interface AlertProps {
     isVisible: boolean
     text: string
-    variant: 'success' | 'danger' | 'warning' | 'info'
+    variant: AlertVariantKeys
     key?: string
 }
 
 const Alert:FC<AlertProps> = (props) => {
     const { isVisible, text, variant, key} = props;
 
-    const classVariant = 
-        variant === 'success' ? 'bg-green-100 text-green-800' :
-        variant === 'danger' ? 'bg-red-200 text-red-700' :
-        variant === 'warning' ? 'bg-yellow-100 text-yellow-800' :
-        variant === 'info' ? 'bg-blue-100 text-blue-800' : '';
+    const classVariant = AlertVariants[variant];
 
     return (
         <AnimatePresence initial={false}>

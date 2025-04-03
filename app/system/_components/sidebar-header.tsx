@@ -21,7 +21,7 @@ const SidebarHeader = () => {
                 />
             )}
             <Button
-                variant="outline-light"
+                variant="outline_light"
                 className="!p-2"
                 onClick={() => setIsOpen(!isOpen)}
             >

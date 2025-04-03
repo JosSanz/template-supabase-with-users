@@ -15,7 +15,7 @@ export default function Reload() {
 	return (
 		<Button
             onClick={handleReload}
-            variant="outline-primary"
+            variant="outline_primary"
             className="!p-2"
         >
 			<ReloadIcon className="size-6" />

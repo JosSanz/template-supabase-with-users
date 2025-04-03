@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import { JSX, ReactNode } from "react";
 import TableColumnHeader from "./table-column-header";
 
 export interface TableColumnInterface<T> {
@@ -17,12 +17,7 @@ export interface TableInterface<T> {
     order?: string
 }
 
-const Table:FC<TableInterface<any>> = ({
-    columns,
-    data,
-	order_by,
-	order
-}) => {
+const Table = <T,>({ columns, data, order_by, order }: TableInterface<T>) => {
 	return (
 		<table className="table">
 			<thead className="sticky top-0">
@@ -65,4 +60,4 @@ const Table:FC<TableInterface<any>> = ({
 	);
 };
 
-export default Table;
+export default Table as <T,>(props: TableInterface<T>) => JSX.Element;

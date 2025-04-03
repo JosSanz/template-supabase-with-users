@@ -57,10 +57,11 @@ const ModalDiscardChanges = ({
             </ModalBody>
             <ModalFooter>
                 <Button 
-                    variant='light' 
+                    variant='light'
                     onClick={handleClose}
                 >Cancelar</Button>
                 <Button 
+                    variant="primary"
                     onClick={handleDiscard}
                 >Continuar</Button>
             </ModalFooter>

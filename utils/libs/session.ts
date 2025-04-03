@@ -5,7 +5,7 @@ import { User } from '@supabase/auth-js';
 import { createClient } from "../supabase/server";
 import Routes from "./routes";
 
-export async function useSession():Promise<User> {
+export async function getUserSession():Promise<User> {
     const supabase = await createClient();
 
     const { data: { user } } = await supabase.auth.getUser();
